@@ -8,200 +8,262 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FFFCF6;--ink:#3E3A39;--coral:#F2A497;--yellow:#F6D27A;--water:#A8D3E6;--green:#B9DAA5;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));height:100%}
-*{box-sizing:border-box}
+:root{--paper:#FFFCF6;--ink:#3E3A39;--coral:#F2A497;--yellow:#F6D27A;--blue:#A8D3E6;--green:#B9DAA5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Huninn","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;font-size:16px}
-nav{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--paper);border-bottom:3px solid var(--ink);padding:calc(8px + env(safe-area-inset-top,0px)) 10px 8px;display:flex;gap:6px;overflow-x:auto;justify-content:flex-start}
-nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:2px 14px;font-size:14px;background:var(--paper)}
-nav a:nth-child(1){background:var(--coral)}nav a:nth-child(2){background:var(--yellow)}nav a:nth-child(3){background:var(--water)}nav a:nth-child(4){background:var(--green)}nav a:nth-child(5){background:var(--coral)}
-main{max-width:640px;margin:0 auto;padding:calc(64px + env(safe-area-inset-top,0px)) 16px 40px}
-section{margin-top:34px}
-h1,h2{margin:0;line-height:1.3}
-h2{font-size:22px;margin-bottom:14px;display:inline-block;background:var(--yellow);border:3px solid var(--ink);border-radius:18px;padding:2px 16px}
-.box{border:3px solid var(--ink);border-radius:28px;background:var(--paper);padding:18px}
-.hero{text-align:center;background:var(--water)}
-.hero svg{width:100%;height:auto;display:block}
-.hero h1{font-size:26px;margin-top:6px}
-.hero p{margin:4px 0 0}
-.count{display:flex;gap:8px;justify-content:center;margin-top:14px}
-.count div{flex:1;max-width:76px;background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:4px 0}
-.count b{display:block;font-size:26px;line-height:1.2}.count span{font-size:12px}
-.invite{background:var(--coral);position:relative}
-.invite .in{background:var(--paper);border:3px dashed var(--ink);border-radius:20px;padding:16px;text-align:center}
-.invite h3{margin:6px 0;font-size:20px}.invite p{margin:6px 0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:20}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:19;background:var(--paper);border-bottom:3px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px}
+nav b{font-size:1rem;white-space:nowrap}
+nav .links{display:flex;gap:6px;overflow-x:auto}
+nav a{color:var(--ink);text-decoration:none;border:3px solid var(--ink);border-radius:999px;padding:1px 12px;font-size:.9rem;white-space:nowrap;background:var(--paper)}
+nav a:nth-child(1){background:var(--coral)}nav a:nth-child(2){background:var(--yellow)}nav a:nth-child(3){background:var(--blue)}nav a:nth-child(4){background:var(--green)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+section{padding:28px 16px;max-width:760px;margin:0 auto}
+h1,h2,h3,p{margin:0}
+h2{font-size:1.6rem;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card{border:3px solid var(--ink);border-radius:28px;background:var(--paper);box-shadow:0 5px 0 var(--ink)}
+.hero{text-align:center;padding-top:20px}
+.hero .art{overflow:hidden;margin-bottom:18px}
+.hero svg{display:block;width:100%;height:auto}
+.hero h1{font-size:2.1rem;line-height:1.25}
+.hero h1 span{display:block;font-size:1.3rem}
+.date{display:inline-block;margin:12px 0 18px;background:var(--yellow);border:3px solid var(--ink);border-radius:999px;padding:4px 18px}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.count div{border:3px solid var(--ink);border-radius:22px;padding:8px 0}
+.count div:nth-child(1){background:var(--coral)}.count div:nth-child(2){background:var(--yellow)}.count div:nth-child(3){background:var(--blue)}.count div:nth-child(4){background:var(--green)}
+.count b{display:block;font-size:1.8rem;line-height:1.2}
+.count small{font-size:.85rem}
+#cdlabel{margin-bottom:10px}
+.grid{display:grid;gap:14px}
+.note{padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.note i{flex:none;width:46px;height:46px;border:3px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.3rem}
+.note h3{font-size:1.1rem}
+.note p{font-size:.95rem}
+.c1{background:var(--coral)}.c2{background:var(--yellow)}.c3{background:var(--blue)}.c4{background:var(--green)}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px}
-.tab{flex:0 0 auto;font:inherit;color:var(--ink);background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:4px 12px;cursor:pointer;text-align:center;line-height:1.3}
-.tab small{display:block;font-size:11px}
-.tab[aria-selected=true]{background:var(--green);animation:pop .5s}
-@keyframes pop{0%{transform:scale(.8)}50%{transform:scale(1.12)}75%{transform:scale(.96)}100%{transform:scale(1)}}
-.tl{list-style:none;margin:6px 0 0;padding:0 0 0 6px;border-left:3px solid var(--ink);margin-left:8px}
-.tl li{position:relative;margin:0 0 14px 18px;border:3px solid var(--ink);border-radius:22px;padding:10px 12px;background:var(--paper);animation:pop .5s backwards}
-.tl li::before{content:"";position:absolute;left:-32px;top:16px;width:15px;height:15px;border:3px solid var(--ink);border-radius:50%;background:var(--yellow)}
-.tl li.imp{background:#FFF1EE}
-.tm{font-size:14px;font-weight:bold}.ti{font-size:17px;margin:2px 0}.who{font-size:13px;opacity:.8}
-.tag{display:inline-block;font-size:12px;border:2px solid var(--ink);border-radius:999px;padding:0 10px;margin:0 4px 2px 0}
-.t1{background:var(--coral)}.t2{background:var(--yellow)}.t3{background:var(--water)}.t4{background:var(--green)}.t5{background:var(--paper)}
-.imp-b{display:inline-block;font-size:12px;background:var(--coral);border:2px solid var(--ink);border-radius:999px;padding:0 10px;transform:rotate(-4deg)}
-.stage{border:3px solid var(--ink);border-radius:14px;background:var(--coral);text-align:center;margin:0 auto 10px;width:60%}
-.gg{display:flex;flex-wrap:wrap;gap:6px;border:3px solid var(--ink);border-radius:18px;background:var(--paper);padding:8px;margin-bottom:8px}
-.gg>b{flex:0 0 100%;font-size:13px}
-.cl{border:2px solid var(--ink);border-radius:10px;padding:2px 6px;text-align:center;font-size:12px;line-height:1.3}
-.cl i{display:flex;gap:4px;justify-content:center;margin-top:2px}
-.cl i u{display:block;width:8px;height:8px;border:2px solid var(--ink);border-radius:50%;text-decoration:none}
-.cl i u:first-child{background:var(--coral)}.cl i u:last-child{background:var(--water)}
-.cl.mid{background:var(--yellow)}
-.todo{list-style:none;padding:0;margin:0}
-.todo li{margin:0 0 10px}
-.todo label{display:flex;gap:12px;align-items:center;border:3px solid var(--ink);border-radius:20px;padding:10px 12px;cursor:pointer}
-.todo input{appearance:none;-webkit-appearance:none;flex:0 0 26px;width:26px;height:26px;border:3px solid var(--ink);border-radius:9px;margin:0;background:var(--paper);display:grid;place-items:center}
-.todo input:checked{background:var(--green)}
-.todo input:checked::after{content:"✓";font-size:18px;line-height:1}
-.todo input:checked+span{text-decoration:line-through;opacity:.55}
-.bar{height:18px;border:3px solid var(--ink);border-radius:999px;margin-bottom:14px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--yellow);border-right:3px solid var(--ink);transition:width .4s}
-.stay{background:var(--green)}.stay .c{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:12px 14px;margin-top:10px}
-.stay h3{margin:0 0 4px;font-size:17px}.stay p{margin:0;font-size:14px}
-footer{text-align:center;font-size:13px;margin-top:30px}
-.float{animation:fl 4s ease-in-out infinite}.float2{animation:fl 5s ease-in-out -2s infinite}
-.drift{animation:dr 12s ease-in-out infinite alternate}
-.run{animation:rn 1.2s ease-in-out infinite alternate}
-.wave{transform-origin:0 0;animation:wv 2s ease-in-out infinite alternate}
-@keyframes fl{50%{transform:translateY(-6px)}}
-@keyframes dr{to{transform:translateX(24px)}}
-@keyframes rn{to{transform:translateY(-5px) rotate(3deg)}}
-@keyframes wv{to{transform:skewY(-8deg)}}
+.tabs button{font:inherit;color:var(--ink);flex:none;border:3px solid var(--ink);border-radius:999px;background:var(--paper);padding:2px 16px;cursor:pointer;text-align:center;line-height:1.3}
+.tabs button small{display:block;font-size:.72rem}
+.tabs button[aria-selected=true]{background:var(--yellow);box-shadow:0 4px 0 var(--ink);animation:bounce .5s}
+.tl{list-style:none;margin:8px 0 0;padding:0 0 0 30px;position:relative}
+.tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;border-left:3px dashed var(--ink)}
+.tl li{position:relative;margin-bottom:14px;animation:bounce .6s both;animation-delay:calc(var(--i)*60ms)}
+.tl li::before{content:"";position:absolute;left:-30px;top:12px;width:20px;height:20px;border:3px solid var(--ink);border-radius:50%;background:var(--dot)}
+.item{padding:10px 14px}
+.item time{font-size:.9rem}
+.item h3{font-size:1.05rem;line-height:1.5}
+.item p{font-size:.9rem;opacity:.85}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{border:2px solid var(--ink);border-radius:999px;padding:0 10px;font-size:.8rem}
+.imp{background:var(--ink);color:var(--paper);border-radius:999px;padding:0 10px;font-size:.8rem;display:inline-block;animation:wob 2s ease-in-out infinite}
+.imp-item{background:#FFF6DC}
+.tip{margin-top:10px;padding:12px 16px;background:var(--blue);font-size:.95rem}
+nav a:nth-child(5){background:var(--coral)}nav a:nth-child(6){background:var(--yellow)}nav a:nth-child(7){background:var(--blue)}
+.map{padding:10px;overflow:hidden}.map svg{display:block;width:100%;max-width:420px;margin:0 auto;height:auto}
+.cell{cursor:default}.cell rect{fill:var(--paper)}.cell.on rect{fill:var(--yellow)}.cell.on{animation:pop .5s;transform-box:fill-box;transform-origin:center}
+.tabs button[aria-pressed=true]{background:var(--coral);box-shadow:0 4px 0 var(--ink);animation:bounce .5s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.3)}70%{transform:scale(.95)}100%{transform:scale(1)}}
+footer{text-align:center;padding:24px 16px 32px;font-size:.9rem}
+@keyframes bounce{0%{transform:translateY(14px) scale(.9);opacity:0}55%{transform:translateY(-6px) scale(1.03);opacity:1}80%{transform:translateY(2px) scale(.99)}100%{transform:none;opacity:1}}
+@keyframes wob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+@keyframes drift{from{transform:translateX(-8px)}to{transform:translateX(10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes wave{from{transform:translateY(-2px)}to{transform:translateY(3px)}}
+.bob{animation:bob .8s ease-in-out infinite alternate}
+.drift{animation:drift 5s ease-in-out infinite alternate}
+.sun{animation:spin 24s linear infinite;transform-box:fill-box;transform-origin:center}
+.wave{animation:wave 1s ease-in-out infinite alternate}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-.sx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (min-width:600px){.hero h1{font-size:2.8rem}.grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<nav><a href="#top">首頁</a><a href="#invite">邀請卡</a><a href="#flow">活動流程</a><a href="#gather">集合位置</a><a href="#rest">休息區</a></nav>
-<main id="top">
-<div class="box hero">
-<svg viewBox="0 0 360 240" role="img" aria-label="小朋友在紅色跑道上接力賽跑的插圖，旁邊有紅白帳篷與樹"><g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-<g class="drift"><path d="M250 58h50a10 10 0 0 0 0-20 14 14 0 0 0-26-3 11 11 0 0 0-24 23z" fill="#FFFCF6"/></g>
-<rect x="40" y="30" width="10" height="70" fill="#F6D27A"/><rect x="150" y="30" width="10" height="70" fill="#F6D27A"/><rect x="265" y="30" width="10" height="70" fill="#F6D27A"/><circle cx="20" cy="30" r="34" fill="#B9DAA5"/><circle cx="70" cy="24" r="36" fill="#B9DAA5"/><circle cx="120" cy="34" r="32" fill="#B9DAA5"/><circle cx="170" cy="22" r="36" fill="#B9DAA5"/><circle cx="225" cy="30" r="34" fill="#B9DAA5"/><circle cx="280" cy="20" r="36" fill="#B9DAA5"/><circle cx="335" cy="34" r="34" fill="#B9DAA5"/><rect x="0" y="108" width="360" height="40" fill="#B9DAA5"/><circle cx="250" cy="100" r="6" fill="#FFFCF6"/><rect x="243" y="106" width="14" height="30" rx="6" fill="#A8D3E6"/><circle cx="268" cy="100" r="6" fill="#FFFCF6"/><rect x="261" y="106" width="14" height="30" rx="6" fill="#F6D27A"/><circle cx="292" cy="100" r="6" fill="#FFFCF6"/><rect x="285" y="106" width="14" height="30" rx="6" fill="#3E3A39"/><circle cx="316" cy="100" r="6" fill="#FFFCF6"/><rect x="309" y="106" width="14" height="30" rx="6" fill="#B9DAA5"/><circle cx="336" cy="100" r="6" fill="#FFFCF6"/><rect x="329" y="106" width="14" height="30" rx="6" fill="#F2A497"/>
-<polygon points="50,72 75,72 54.17,106 20.0,106" fill="#F2A497"/><polygon points="75,72 100,72 88.34,106 54.17,106" fill="#FFFCF6"/><polygon points="100,72 125,72 122.51,106 88.34,106" fill="#F2A497"/><polygon points="125,72 150,72 156.68,106 122.51,106" fill="#FFFCF6"/><polygon points="150,72 175,72 190.85000000000002,106 156.68,106" fill="#F2A497"/><polygon points="175,72 200,72 225.02000000000004,106 190.85000000000002,106" fill="#FFFCF6"/><path d="M20 106H225M30 106V138M215 106V138" fill="none"/><path d="M50 72H200L225 106H20Z" fill="none"/>
-<rect x="0" y="146" width="360" height="94" fill="#F2A497"/>
-<path d="M0 206Q170 168 360 196M0 232Q190 192 360 224M250 240Q290 196 360 192" fill="none" stroke="#FFFCF6"/>
-<g transform="translate(285 196) scale(0.82)"><g class="run" style="animation-delay:-1.0s"><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#FFFCF6" stroke-width="6"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="-31" cy="-6" rx="9" ry="5" fill="#FFFCF6"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="11" cy="-5" rx="10" ry="5" fill="#FFFCF6"/><rect x="-15" y="-82" width="30" height="42" rx="11" fill="#F6D27A"/><text x="0" y="-60" font-size="9" stroke="none" text-anchor="middle" fill="#FFFCF6">1</text><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#FFFCF6" stroke-width="6"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#3E3A39" stroke-width="9"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#9B6FB3" stroke-width="4"/><circle cx="0" cy="-96" r="14" fill="#FFFCF6"/><path d="M-14 -98Q-14 -114 0 -113Q14 -114 14 -98Q4 -106 -14 -98Z" fill="#3E3A39"/><circle cx="5" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/><circle cx="11" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/></g></g>
-<g transform="translate(195 214) scale(0.98)"><g class="run" style="animation-delay:-0.5s"><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#FFFCF6" stroke-width="6"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="-31" cy="-6" rx="9" ry="5" fill="#FFFCF6"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="11" cy="-5" rx="10" ry="5" fill="#FFFCF6"/><rect x="-15" y="-82" width="30" height="42" rx="11" fill="#F2A497"/><text x="0" y="-60" font-size="9" stroke="none" text-anchor="middle" fill="#FFFCF6">進學 1</text><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#FFFCF6" stroke-width="6"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#3E3A39" stroke-width="9"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#9B3F4F" stroke-width="4"/><circle cx="0" cy="-96" r="14" fill="#FFFCF6"/><path d="M-14 -98Q-14 -114 0 -113Q14 -114 14 -98Q4 -106 -14 -98Z" fill="#3E3A39"/><circle cx="5" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/><circle cx="11" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/></g></g>
-<g transform="translate(92 232) scale(1.18)"><g class="run" style="animation-delay:0s"><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M0 -72L-12 -60L-20 -48" fill="none" stroke="#FFFCF6" stroke-width="6"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L-14 -24L-28 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="-31" cy="-6" rx="9" ry="5" fill="#FFFCF6"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#3E3A39" stroke-width="16"/><path d="M0 -44L17 -36L7 -10" fill="none" stroke="#A8D3E6" stroke-width="10"/><ellipse cx="11" cy="-5" rx="10" ry="5" fill="#FFFCF6"/><rect x="-15" y="-82" width="30" height="42" rx="11" fill="#2F3E6B"/><text x="0" y="-60" font-size="9" stroke="none" text-anchor="middle" fill="#FFFCF6">學</text><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#3E3A39" stroke-width="12"/><path d="M2 -72L16 -62L26 -74" fill="none" stroke="#FFFCF6" stroke-width="6"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#3E3A39" stroke-width="9"/><line x1="14" y1="-70" x2="38" y2="-86" stroke="#6FA3D6" stroke-width="4"/><circle cx="0" cy="-96" r="14" fill="#FFFCF6"/><path d="M-14 -98Q-14 -114 0 -113Q14 -114 14 -98Q4 -106 -14 -98Z" fill="#3E3A39"/><circle cx="5" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/><circle cx="11" cy="-95" r="1.6" fill="#3E3A39" stroke="none"/><circle cx="5" cy="-95" r="4" fill="none" stroke-width="1.5"/><circle cx="12" cy="-95" r="4" fill="none" stroke-width="1.5"/></g></g>
-</g></svg>
-<h1>進學國小 107 週年<br>校慶運動會</h1>
-<p>健康飲食快樂動、樂觀活力向前衝</p>
-<p>115 年 12 月 5 日（六）07:00–16:00</p>
-<div class="count" aria-live="off"><div><b id="d">–</b><span>天</span></div><div><b id="h">–</b><span>時</span></div><div><b id="m">–</b><span>分</span></div><div><b id="s">–</b><span>秒</span></div></div>
-<p id="cmsg" style="font-size:14px;margin-top:8px"></p>
+<nav>
+<b>進學107</b>
+<div class="links"><a href="#top">首頁</a><a href="#remind">提醒</a><a href="#place">位置</a><a href="#class">班級</a><a href="#flow">流程</a><a href="#notes">注意</a><a href="#more">補充</a></div>
+</nav>
+
+<section id="top" class="hero">
+<div class="card art">
+<svg viewBox="0 0 360 240" role="img" aria-label="三位小朋友在操場上跑步衝線的插圖" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<rect x="0" y="0" width="360" height="240" fill="#A8D3E6" stroke="none"/>
+<g class="sun"><circle cx="300" cy="62" r="24" fill="#F6D27A"/><path d="M300 22v8M300 94v8M260 62h8M332 62h8M272 34l6 6M322 84l6 6M328 34l-6 6M278 84l-6 6" fill="none"/></g>
+<g class="drift" fill="#FFFCF6"><path d="M40 92q-2-16 14-16 6-12 22-6 12-2 16 10 12 2 10 14z"/><path d="M200 84q-2-12 10-12 4-9 16-4 9 0 12 8 9 2 7 8z" transform="translate(30 -10)"/></g>
+<path d="M-4 12Q180 36 364 12" fill="none"/>
+<g stroke-width="2.5"><path d="M31 15.5h18l-9 20z" fill="#F2A497"/><path d="M81 20h18l-9 20z" fill="#F6D27A"/><path d="M131 22.4h18l-9 20z" fill="#B9DAA5"/><path d="M181 23h18l-9 20z" fill="#FFFCF6"/><path d="M231 21.6h18l-9 20z" fill="#F2A497"/><path d="M281 18.6h18l-9 20z" fill="#F6D27A"/></g>
+<rect x="-4" y="150" width="368" height="100" fill="#B9DAA5"/>
+<rect x="-4" y="172" width="368" height="46" fill="#F2A497"/>
+<path d="M0 195h360" stroke-dasharray="10 9" stroke="#FFFCF6" fill="none"/>
+<g class="wave"><path d="M14 150Q70 140 120 150T230 150T346 150" fill="none" stroke="#F2A497" stroke-width="6"/><path d="M14 150Q70 140 120 150T230 150T346 150" fill="none" stroke-width="2"/></g>
+<g transform="translate(76 116)"><g class="bob" style="animation-delay:-.2s"><circle r="11" fill="#FBE3D0"/><path d="M-11 -2Q0 -20 11 -2Q0 -9 -11 -2z" fill="#3E3A39"/><circle cx="-4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><circle cx="4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><path d="M-12 -4h24" stroke="#F2A497" stroke-width="4" fill="none"/><path d="M-10 18l-14 12M10 18l14-12M-4 38l-12 18M4 38l14 12" fill="none" stroke-width="4"/><rect x="-11" y="12" width="22" height="28" rx="9" fill="#C9B6E4"/><text y="31" font-size="10" text-anchor="middle" stroke="none" fill="#3E3A39">24</text></g></g>
+<g transform="translate(180 112)"><g class="bob"><circle r="12" fill="#FBE3D0"/><path d="M-12 -2Q0 -22 12 -2Q0 -10 -12 -2z" fill="#B7794A"/><circle cx="-4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><circle cx="4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><path d="M-5 6Q0 13 5 6z" fill="#F2A497"/><path d="M-11 18l-16-14M11 18l16-14M-4 40l-12 18M4 40l16 14" fill="none" stroke-width="4"/><rect x="-12" y="14" width="24" height="28" rx="9" fill="#B9DAA5"/><text y="33" font-size="10" text-anchor="middle" stroke="none" fill="#3E3A39">31</text></g></g>
+<g transform="translate(282 118)"><g class="bob" style="animation-delay:-.5s"><circle r="11" fill="#FBE3D0"/><path d="M-11 -2Q0 -20 11 -2Q0 -9 -11 -2z" fill="#3E3A39"/><circle cx="-4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><circle cx="4" cy="1" r="1.4" fill="#3E3A39" stroke="none"/><path d="M-10 18l-12 10M10 18l14 6M-4 38l-14 16M4 38l14 16" fill="none" stroke-width="4"/><rect x="-11" y="12" width="22" height="28" rx="9" fill="#F6D27A"/><text y="31" font-size="10" text-anchor="middle" stroke="none" fill="#3E3A39">10</text></g></g>
+</svg>
 </div>
+<h1>進學國小<span>107 週年校慶運動會</span></h1>
+<p class="date">115.12.05（六）07:40～16:00</p>
+<p>敬邀家長參加</p>
+<div class="card" style="padding:16px;margin-top:18px">
+<p id="cdlabel">距離運動會開始還有</p>
+<div class="count" aria-live="off"><div><b id="d">--</b><small>天</small></div><div><b id="h">--</b><small>時</small></div><div><b id="m">--</b><small>分</small></div><div><b id="s">--</b><small>秒</small></div></div>
+</div>
+</section>
 
-<section id="invite"><h2>邀請卡</h2>
-<div class="box invite"><div class="in">
-<svg viewBox="0 0 120 70" width="120" role="img" aria-label="接力棒與獎牌插圖" class="float2"><g stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="30" width="56" height="14" rx="7" fill="#A8D3E6" transform="rotate(-18 36 37)"/><path d="M82 10l8 16m18-16l-8 16" fill="none"/><circle cx="95" cy="46" r="18" fill="#F6D27A"/><path d="M95 36l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" fill="#FFFCF6"/></g></svg>
-<p>親愛的家長、校友與貴賓：</p>
-<h3>誠摯邀請您一起來運動！</h3>
-<p>臺南市中西區進學國民小學<br>107 週年校慶運動會</p>
-<p><b>115 年 12 月 5 日（星期六）</b><br>07:00 玄良亭迎聖火<br>07:00–16:00</p>
-<p style="font-size:14px">★ 當天不開放家長汽機車入校，請步行入校，並多利用學校附近及中山國中假日開放停車格，謝謝配合。</p>
-</div></div></section>
+<section id="remind">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="12" fill="#A8D3E6"/><path d="M19 35V13h8a6.5 6.5 0 010 13h-8" fill="none" stroke-linecap="round"/></svg>提醒事項</h2>
+<div class="grid">
+<div class="card note c2"><i class="c1">🚶</i><div><h3>請步行入校</h3><p>運動會當天不開放家長汽機車入校。</p></div></div>
+<div class="card note c3"><i class="c2">🅿️</i><div><h3>停車小撇步</h3><p>多利用學校附近及中山國中假日開放的停車格。</p></div></div>
+</div>
+</section>
 
-<section id="flow"><h2>活動流程</h2>
-<div class="tabs" role="tablist" id="tabs"></div>
-<ul class="tl" id="tl"></ul></section>
+<section id="place">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M24 44C12 30 8 24 8 18a16 16 0 0132 0c0 6-4 12-16 26z" fill="#F2A497"/><circle cx="24" cy="18" r="6" fill="#FFFCF6"/></svg>位置圖</h2>
+<p style="margin-bottom:8px">點選年級，看看班級休息區在哪裡。</p>
+<div class="tabs" id="gtabs" aria-label="選擇年級"></div>
+<div class="card map"><svg id="map" viewBox="0 0 360 430" role="img" aria-label="115 學年度校慶運動會休息區設置圖" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"></svg></div>
+<div class="card tip" style="background:var(--green)"><b>周邊機車停車</b><br>中山國中（假日校園開放停車）、樹林街二段 254 號旁、忠義路一段 60 巷 4 號（早餐店旁巷子內），以及南寧街、永福路一段沿線停車格。</div>
+</section>
 
-<section id="gather"><h2>集合位置</h2>
-<div class="box" style="background:var(--water)">
-<p style="margin:0 0 10px">各班運動員於<b>大會舞結束後</b>，先到跑道集結；聽司儀口令依序往操場中央站定位。每班直列 2 排、面對表演台，<b>女生在左、男生在右</b>各 1 排。</p>
-<div class="sx"><div id="gsvg"></div></div>
-<p style="font-size:13px;margin:8px 0 0">圖可左右滑動。603 班為「中央伍」，其他班級依此對齊站位。<span class="tag t1">女 左</span><span class="tag t3">男 右</span></p>
-</div></section>
+<section id="class">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="#B9DAA5"/><path d="M24 12v12l8 5" fill="none"/></svg>班級主要活動</h2>
+<ul class="tl" id="cls"></ul>
+</section>
 
-<section id="rest"><h2>休息區位置圖</h2>
-<div class="box" style="background:var(--yellow)">
-<div class="sx" style="background:var(--paper);border:3px solid var(--ink);border-radius:20px"><svg viewBox="0 0 1024 700" style="min-width:760px;width:100%;height:auto;display:block" role="img" aria-label="休息區設置圖"><style>text{stroke:none}</style><g stroke="#3E3A39" stroke-width="3.5" stroke-linejoin="round" font-family="Huninn,sans-serif" text-anchor="middle" fill="#3E3A39"><path d="M35 134H446V88H558V134H970" fill="none"/><rect x="456" y="90" width="92" height="34" rx="17" fill="#A8D3E6"/><text x="502.0" y="113.12" font-size="17">闖關活動區</text><rect x="440" y="150" width="124" height="42" rx="21" fill="#FFFCF6"/><text x="502.0" y="178.2" font-size="20">來賓簽到處</text><rect x="444" y="196" width="112" height="52" rx="10" fill="#F2A497"/><text x="500.0" y="232.08" font-size="28">表演台</text><rect x="562" y="200" width="30" height="52" rx="10" fill="#FFFCF6"/><text x="577.0" y="226.0" font-size="14" dominant-baseline="central" style="writing-mode:vertical-rl;letter-spacing:4px">音響區</text><rect x="212" y="211" width="38" height="36" rx="9" fill="#F6D27A"/><text x="231.0" y="235.48" font-size="18">205</text><rect x="254" y="211" width="38" height="36" rx="9" fill="#F6D27A"/><text x="273.0" y="235.48" font-size="18">204</text><rect x="296" y="211" width="38" height="36" rx="9" fill="#F6D27A"/><text x="315.0" y="235.48" font-size="18">203</text><rect x="338" y="211" width="38" height="36" rx="9" fill="#F6D27A"/><text x="357.0" y="235.48" font-size="18">202</text><rect x="380" y="211" width="38" height="36" rx="9" fill="#F6D27A"/><text x="399.0" y="235.48" font-size="18">201</text><rect x="285" y="176" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="312" y="198" font-size="20">6格</text><rect x="590" y="211" width="50" height="36" rx="10" fill="#FFFCF6"/><text x="615.0" y="235.12" font-size="17">來賓</text><rect x="644" y="211" width="62" height="36" rx="10" fill="#FFFCF6"/><text x="675.0" y="235.12" font-size="17">醫護站</text><rect x="716" y="211" width="38" height="36" rx="9" fill="#F2A497"/><text x="735.0" y="235.48" font-size="18">103</text><rect x="758" y="211" width="38" height="36" rx="9" fill="#F2A497"/><text x="777.0" y="235.48" font-size="18">102</text><rect x="800" y="211" width="38" height="36" rx="9" fill="#F2A497"/><text x="819.0" y="235.48" font-size="18">101</text><rect x="748" y="176" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="775" y="198" font-size="20">5格</text><rect x="195" y="263" width="610" height="334" fill="none"/><ellipse cx="502" cy="417" rx="296" ry="152" fill="#B9DAA5" fill-opacity=".45"/><ellipse cx="502" cy="417" rx="217" ry="94" fill="#FFFCF6"/><rect x="33" y="262" width="77" height="125" rx="10" fill="#FFFCF6"/><text x="71.5" y="324.5" font-size="22" dominant-baseline="central" style="writing-mode:vertical-rl;letter-spacing:4px">遊戲器材區</text><rect x="33" y="387" width="77" height="210" rx="10" fill="#FFFCF6"/><text x="71.5" y="492.0" font-size="22" dominant-baseline="central" style="writing-mode:vertical-rl;letter-spacing:4px">綜合球場</text><rect x="112" y="343" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="139" y="365" font-size="20">2格</text><rect x="169" y="329" width="40" height="94" rx="10" fill="#F6D27A"/><text x="189.0" y="376.0" font-size="22" dominant-baseline="central" style="writing-mode:vertical-rl;letter-spacing:4px">幼兒園</text><rect x="833" y="262" width="50" height="34" rx="10" fill="#FFFCF6"/><text x="858.0" y="283.68" font-size="13">石桌 樹</text><rect x="833" y="302" width="48" height="28" rx="9" fill="#B9DAA5"/><text x="857.0" y="322.48" font-size="18">301</text><rect x="833" y="333" width="48" height="28" rx="9" fill="#B9DAA5"/><text x="857.0" y="353.48" font-size="18">302</text><rect x="833" y="364" width="48" height="28" rx="9" fill="#B9DAA5"/><text x="857.0" y="384.48" font-size="18">303</text><rect x="833" y="395" width="48" height="28" rx="9" fill="#B9DAA5"/><text x="857.0" y="415.48" font-size="18">304</text><rect x="833" y="426" width="48" height="28" rx="9" fill="#B9DAA5"/><text x="857.0" y="446.48" font-size="18">305</text><rect x="833" y="457" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="477.48" font-size="18">401</text><rect x="892" y="370" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="919" y="392" font-size="20">6格</text><rect x="833" y="480" width="50" height="20" rx="10" fill="#FFFCF6"/><text x="858.0" y="495.04" font-size="14">樹</text><rect x="833" y="506" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="526.48" font-size="18">402</text><rect x="833" y="537" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="557.48" font-size="18">403</text><rect x="833" y="568" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="588.48" font-size="18">404</text><rect x="833" y="599" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="619.48" font-size="18">405</text><rect x="833" y="630" width="48" height="28" rx="9" fill="#A8D3E6"/><text x="857.0" y="650.48" font-size="18">406</text><rect x="892" y="560" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="919" y="582" font-size="20">5格</text><path d="M833 640C826 668 800 640 782 610M890 650C896 700 835 692 784 668" fill="none"/><rect x="729" y="636" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="756" y="658" font-size="20">3格</text><rect x="200" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="219.0" y="602.48" font-size="18">507</text><rect x="242" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="261.0" y="602.48" font-size="18">506</text><rect x="284" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="303.0" y="602.48" font-size="18">505</text><rect x="326" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="345.0" y="602.48" font-size="18">504</text><rect x="368" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="387.0" y="602.48" font-size="18">503</text><rect x="410" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="429.0" y="602.48" font-size="18">502</text><rect x="452" y="578" width="38" height="36" rx="9" fill="#F2A497"/><text x="471.0" y="602.48" font-size="18">501</text><rect x="313" y="542" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="340" y="564" font-size="20">8格</text><rect x="500" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="519.0" y="602.48" font-size="18">607</text><rect x="542" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="561.0" y="602.48" font-size="18">606</text><rect x="584" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="603.0" y="602.48" font-size="18">605</text><rect x="626" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="645.0" y="602.48" font-size="18">604</text><rect x="668" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="687.0" y="602.48" font-size="18">603</text><rect x="710" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="729.0" y="602.48" font-size="18">602</text><rect x="752" y="578" width="38" height="36" rx="9" fill="#F6D27A"/><text x="771.0" y="602.48" font-size="18">601</text><rect x="613" y="542" width="54" height="30" rx="8" fill="#FFFCF6" stroke-dasharray="0"/><text fill="#2B6CA3" x="640" y="564" font-size="20">4格</text><rect x="932" y="160" width="75" height="516" rx="10" fill="#FFFCF6"/><text x="969.5" y="418.0" font-size="26" dominant-baseline="central" style="writing-mode:vertical-rl;letter-spacing:4px">專科教室</text><rect x="203" y="646" width="200" height="48" rx="10" fill="#FFFCF6"/><text x="303.0" y="678.64" font-size="24">半戶外球場</text><rect x="430" y="646" width="180" height="50" rx="10" fill="#FFFCF6"/><text x="520.0" y="680.36" font-size="26">進學堂</text></g></svg></div>
-<p style="font-size:13px;margin:8px 0 0">圖可左右滑動。藍色「格」為各區休息區格數，例如 205–201 為 6 格、507–501 為 8 格。</p>
-</div></section>
+<section id="flow">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M17 44l-3-16h20l-3 16z" fill="#F6D27A"/><path d="M24 4c10 8 12 16 8 22H16c-4-6-2-14 8-22z" fill="#F2A497"/></svg>活動流程</h2>
+<div class="tabs" role="tablist" id="tabs" aria-label="選擇時段"></div>
+<ul class="tl" id="tl"></ul>
+<div class="card tip" id="tip" hidden></div>
+</section>
 
-<footer>臺南市中西區進學國民小學 · 107 週年校慶 ✿</footer>
-</main>
+<section id="notes">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M14 18a10 10 0 0120 0v22a4 4 0 01-4 4H18a4 4 0 01-4-4z" fill="#B9DAA5"/><path d="M18 30h12v8H18z" fill="#F6D27A"/><path d="M19 12v-4h10v4" fill="none" stroke-linecap="round"/></svg>注意事項</h2>
+<div class="grid">
+<div class="card note c2"><i class="c1">⏰</i><div><h3>時間</h3><p>7:40 前到校，16:00 放學。學生上放學皆由東側門。</p></div></div>
+<div class="card note c3"><i class="c2">👕</i><div><h3>服裝</h3><p>運動服（上衣及褲子，長短自行調整）。戰鼓隊請配合團隊攜帶衣服更換。</p></div></div>
+<div class="card note c4"><i class="c3">🎒</i><div><h3>攜帶物品</h3><p>小背包、餐具、水壺。</p></div></div>
+<div class="card note c1"><i class="c4">🧢</i><div><h3>個人選配</h3><p>點心、帽子、墨鏡、發票袋（闖關用）。</p></div></div>
+<div class="card note c4"><i class="c1">🍱</i><div><h3>用餐與休息區</h3><p>為衛生考量，餐點皆於教室食用，休息區只帶飲用水。</p></div></div>
+<div class="card note c3"><i class="c2">🔒</i><div><h3>貴重物品</h3><p>當日校園開放，請避免攜帶貴重物品。</p></div></div>
+</div>
+</section>
+
+<section id="more">
+<h2><svg width="48" height="48" viewBox="0 0 48 48" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M8 10h32a4 4 0 014 4v16a4 4 0 01-4 4H24l-10 8v-8H8a4 4 0 01-4-4V14a4 4 0 014-4z" fill="#F6D27A"/><path d="M14 20h20M14 27h12" fill="none"/></svg>補充說明</h2>
+<div class="grid">
+<div class="card note c3"><i class="c2">🌧️</i><div><h3>雨天或空氣品質不佳</h3><p>改在進學堂依年級順序進行「趣味競賽」，之後回教室正常上課（週一課程），其餘賽程在隔週補賽。</p></div></div>
+<div class="card note c1"><i class="c4">📅</i><div><h3>12 月 7 日（一）補假</h3><p>運動會補假一天。</p></div></div>
+<div class="card note c4"><i class="c3">🙋</i><div><h3>提早離校</h3><p>學生如需提早離校，請告知老師。</p></div></div>
+</div>
+</section>
+
+<footer>進學國小 107 週年校慶運動會・敬邀家長參加</footer>
+
 <script>
 var T=[
-{k:"開幕典禮",r:"07:00–09:35",i:[
-["7:00–7:30","玄良亭迎聖火","校長、家長會長、四處主任",1,1],
-["7:30–7:50","各班校園環境整理","全體師生",5,0],
-["7:50–8:10","各班休息區就位","全體師生",5,0],
-["8:10–8:20","典禮開始・戰鼓表演「朔風撼岳」","戰鼓社團",1,1],
-["8:20–8:40","大會舞","幼兒園→一年級→…→六年級全體學生",1,0],
-["8:40–8:50","運動員進場","三～六年級學生（各班班旗）",1,0],
-["8:50–8:55","家長會、校友會、志工團進場","",1,0],
-["8:55–9:05","會旗、聖火進場、燃聖火","舞蹈班和鼓隊為會旗前導",1,1],
-["9:05–9:10","升會旗、唱國歌","全體貴賓、教職員工、學生",1,0],
-["9:10–9:20","主席致詞、家長會長與貴賓致詞","主席、長官、來賓、家長會",1,0],
-["9:20–9:25","頒獎：志願服務獎、績優交通導護志工、優秀校友獎學金等","獲獎志工、得獎學生",1,0],
-["9:25–9:35","運動員宣誓、唱校歌、禮成退場","小市長代表、各班旗手",1,0]]},
-{k:"競賽時間",r:"09:35–11:30",i:[
-["9:35–9:40","100M 決賽","三至六年級選手",2,0],
-["9:40–9:50","幼兒園分組賽跑（進學堂前跑道）","幼兒園全體學生",2,0],
-["9:40–9:50","一年級分組賽跑（表演台前跑道）","一年級全體學生",2,0],
-["9:50–10:00","二年級分組賽跑（表演台前跑道）","二年級全體學生",2,0],
-["9:40–9:50","三年級「傳遞神拍，健康展活力」","三年級全體學生",3,0],
-["9:50–10:00","四年級「快樂動、向前衝」","四年級全體師生",3,0],
-["10:00–10:10","幼兒園「活力小健將，快樂向前衝」（進學堂）","幼兒園全體師生",3,0],
-["10:10–10:20","五年級「筷樂飲食，健康生活」","五年級全體師生",3,0],
-["10:20–10:30","六年級「圈出健康，齊心向前」","六年級全體師生",3,0],
-["10:30–10:40","一年級「食物紅綠燈，健康小高手」","一年級全體師生",3,0],
-["10:40–10:50","二年級「搖滾樂翻天」","二年級全體師生",3,0],
-["10:50–11:00","400M 接力","五、六年級學生",4,1],
-["11:10–11:30","100M 及 400M 接力頒獎、休息區整理","全體師生",5,0]]},
-{k:"午餐午休",r:"11:30–13:40",i:[
-["11:30–12:00","午餐時間","全體師生",5,0],
-["12:00–13:30","午休","志工在大辦公室用餐",5,0]]},
-{k:"大隊接力",r:"13:40–15:20",i:[
-["13:40–14:05","四年級大隊接力","四年級學生",4,1],
-["14:05–14:30","三年級大隊接力","三年級學生",4,1],
-["14:30–14:55","五年級大隊接力","五年級學生",4,1],
-["14:55–15:20","六年級大隊接力","六年級學生",4,1]]},
-{k:"閉幕賦歸",r:"15:20–16:00",i:[
-["15:20–15:50","摸彩活動・團體獎頒獎・閉幕、降大會旗（唱校歌）","頒發大隊接力前三名及田徑總錦標；主席致閉幕詞",1,1],
-["15:50–16:00","恢復場地、賦歸","全體師生、志工",5,0]]}
+{t:"07:00",n:"迎聖火",items:[
+["07:00–07:30","玄良亭迎聖火","校長、家長會長、四處主任",["典禮"]],
+["07:30–07:50","各班校園環境整理","全體師生",["班級"]],
+["07:50–08:10","各班休息區就位","全體師生",["班級"]]]},
+{t:"08:10",n:"開幕典禮",items:[
+["08:10–08:20","典禮開始，戰鼓表演：朔風撼岳","戰鼓社團",["典禮","表演"],1],
+["08:20–08:40","大會舞","幼兒園→一年級→二年級→三年級→四年級→五年級→六年級",["表演"]],
+["08:40–08:50","運動員進場","三～六年級學生（各班班旗）",["進場"]],
+["08:50–08:55","家長會、校友會、志工團進場","",["進場"]],
+["08:55–09:05","會旗、聖火進場、燃聖火","舞蹈班和鼓隊為會旗前導",["典禮"],1],
+["09:05–09:10","升會旗、唱國歌","全體貴賓、教職員工、學生",["典禮"]],
+["09:10–09:20","介紹貴賓、主席致詞、家長會長與貴賓致詞","主席、長官、來賓、家長會",["典禮"]],
+["09:20–09:25","頒發當選證書與獎項","家長會長、志工團團長當選證書；115 年度臺南市志願服務獎、績優交通導護志工；107 週年四所高中優秀校友獎學金",["頒獎"]],
+["09:25–09:30","運動員宣誓、唱校歌","小市長代表、各班旗手",["典禮"]],
+["09:30–09:35","禮成、退場","",["典禮"]]]},
+{t:"09:35",n:"賽跑與趣味競賽",items:[
+["09:35–09:40","100M 決賽","三至六年級選手",["田徑"],1],
+["09:40–09:50","幼兒園分組賽跑","進學堂前跑道",["賽跑"]],
+["09:40–09:50","一年級分組賽跑","表演台前跑道",["賽跑"]],
+["09:50–10:00","二年級分組賽跑","表演台前跑道",["賽跑"]],
+["09:40–09:50","三年級「傳遞神拍，健康展活力」","",["趣味競賽"],1],
+["09:50–10:00","四年級「快樂動、向前衝」","",["趣味競賽"],1],
+["10:00–10:10","幼兒園「活力小健將，快樂向前衝」","進學堂",["趣味競賽"],1],
+["10:10–10:20","五年級「筷樂飲食，健康生活」","",["趣味競賽"],1],
+["10:20–10:30","六年級「圈出健康，齊心向前」","",["趣味競賽"],1],
+["10:30–10:40","一年級「食物紅綠燈，健康小高手」","",["趣味競賽"],1],
+["10:40–10:50","二年級「搖滾樂翻天」","",["趣味競賽"],1],
+["10:50–11:00","400M 接力","五、六年級學生",["接力"],1],
+["11:10–11:30","100M 及 400M 接力頒獎、休息區整理","全體師生",["頒獎"]]]},
+{t:"10:00",n:"闖關換好禮",tip:"闖關卡完成後自行保留，不用交回學務處。換禮品請帶紙本發票（裝在信封袋）。",items:[
+["趣味競賽後～11:30","闖關換好禮","地點：玄關與中走廊。帶闖關卡才能闖關",["闖關"],1],
+["關卡","創世基金會","要帶 10 張或 20 張紙本發票才能兌換",["闖關"]],
+["關卡","營養教育","蓋章",["闖關"]],
+["關卡","故事志工","蓋章",["闖關"]],
+["關卡","健保署","蓋章",["闖關"]]]},
+{t:"11:30",n:"午餐午休",items:[
+["11:30–12:00","午餐時間","全體師生，餐點皆於教室食用",["用餐"]],
+["12:00–13:30","午休","志工在大辦公室用餐",["用餐"]]]},
+{t:"13:40",n:"大隊接力",items:[
+["13:40–14:05","四年級大隊接力","四年級學生",["接力"],1],
+["14:05–14:30","三年級大隊接力","三年級學生",["接力"],1],
+["14:30–14:55","五年級大隊接力","五年級學生",["接力"],1],
+["14:55–15:20","六年級大隊接力","六年級學生",["接力"],1],
+["15:20–15:50","摸彩、頒獎、閉幕","團體獎、三～六年級大隊接力前三名、田徑總錦標；主席致閉幕詞，降大會旗、唱校歌",["頒獎","典禮"],1],
+["15:50–16:00","恢復場地、賦歸","全體師生、志工",["班級"]]]}
 ];
-var N={1:"典禮",2:"田徑",3:"趣味競賽",4:"接力",5:"生活"};
-var tabs=document.getElementById("tabs"),tl=document.getElementById("tl");
-function show(n){
- Array.prototype.forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i===n)});
- tl.innerHTML="";
- T[n].i.forEach(function(x,j){
-  var li=document.createElement("li");if(x[4])li.className="imp";li.style.animationDelay=(j*0.04)+"s";
-  li.innerHTML='<div class="tm">'+x[0]+'</div><div class="ti">'+x[1]+'</div><span class="tag t'+x[3]+'">'+N[x[3]]+'</span>'+(x[4]?'<span class="imp-b">重要</span>':'')+(x[2]?'<div class="who">'+x[2]+'</div>':'');
-  tl.appendChild(li);
- });
+var COL={"典禮":"c1","表演":"c2","進場":"c3","班級":"c4","頒獎":"c2","田徑":"c3","賽跑":"c4","趣味競賽":"c1","接力":"c4","闖關":"c2","用餐":"c3"};
+var DOT=["var(--coral)","var(--yellow)","var(--blue)","var(--green)"];
+var tabs=document.getElementById("tabs"),tl=document.getElementById("tl"),tip=document.getElementById("tip");
+function show(k){
+  [].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i===k)});
+  var g=T[k];
+  tl.innerHTML=g.items.map(function(x,i){
+    return '<li style="--i:'+i+';--dot:'+DOT[i%4]+'"><div class="card item'+(x[4]?' imp-item':'')+'"><time>'+x[0]+'</time> '+(x[4]?'<span class="imp">★ 重要</span>':'')+'<h3>'+x[1]+'</h3>'+(x[2]?'<p>'+x[2]+'</p>':'')+'<div class="tags">'+x[3].map(function(t){return '<span class="tag '+COL[t]+'">'+t+'</span>'}).join("")+'</div></div></li>';
+  }).join("");
+  tip.hidden=!g.tip;tip.textContent=g.tip||"";
 }
-T.forEach(function(t,n){var b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.innerHTML=t.k+'<small>'+t.r+'</small>';b.onclick=function(){show(n)};tabs.appendChild(b)});
+T.forEach(function(g,i){
+  var b=document.createElement("button");b.type="button";b.setAttribute("role","tab");
+  b.innerHTML=g.t+'<small>'+g.n+'</small>';
+  b.onclick=function(){show(i)};tabs.appendChild(b);
+});
 show(0);
-var target=new Date("2026-12-05T07:00:00+08:00").getTime();
+(function(){
+var h='<ellipse cx="178" cy="232" rx="104" ry="82" fill="#B9DAA5"/><ellipse cx="178" cy="232" rx="66" ry="44" fill="#FFFCF6"/><text x="178" y="236" font-size="13" text-anchor="middle" stroke="none" fill="#3E3A39">操場</text>';
+function R(x,y,w,ht,f,l,g,fs){var s='<g'+(g!=null?' class="cell" data-g="'+g+'"':'')+'><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+ht+'" rx="6" fill="'+f+'"/>';var L=l.split("|");L.forEach(function(t,i){s+='<text x="'+(x+w/2)+'" y="'+(y+ht/2+(i-(L.length-1)/2)*(fs+2)+fs*.35)+'" font-size="'+fs+'" text-anchor="middle" stroke="none" fill="#3E3A39">'+t+'</text>'});return s+'</g>'}
+var P="#FFFCF6",Y="#F6D27A",B="#A8D3E6",G="#B9DAA5",C="#F2A497";
+h+=R(130,6,100,24,B,"闖關活動區",null,11)+R(135,38,90,24,Y,"來賓簽到處",null,11)+R(146,68,70,32,C,"表演台",null,12)+R(222,72,38,24,Y,"來賓|醫護",null,8);
+[205,204,203,202,201].forEach(function(n,i){h+=R(12+26*i,72,24,24,P,""+n,2,9)});
+[103,102,101].forEach(function(n,i){h+=R(266+26*i,72,24,24,P,""+n,1,9)});
+[301,302,303,304,305,401].forEach(function(n,i){h+=R(296,104+22*i,30,20,P,""+n,(""+n)[0],9)});
+[402,403,404,405,406].forEach(function(n,i){h+=R(296,242+22*i,30,20,P,""+n,4,9)});
+[507,506,505,504,503,502,501].forEach(function(n,i){h+=R(8+22*i,362,20,22,P,""+n,5,8)});
+[607,606,605,604,603,602,601].forEach(function(n,i){h+=R(166+22*i,362,20,22,P,""+n,6,8)});
+h+=R(4,112,34,64,Y,"遊戲|器材|區",null,9)+R(4,182,34,64,Y,"綜合|球場",null,9)+R(44,196,22,70,P,"幼|兒|園",0,10)+R(332,100,24,252,B,"專|科|教|室",null,10)+R(8,394,100,30,Y,"半戶外球場",null,11)+R(166,394,120,30,C,"進學堂",null,12);
+var M=document.getElementById("map");M.innerHTML=h;
+var gt=document.getElementById("gtabs"),cur=null;
+["幼兒園","一年級","二年級","三年級","四年級","五年級","六年級"].forEach(function(n,i){
+ var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed","false");
+ b.onclick=function(){cur=cur===i?null:i;
+ [].forEach.call(gt.children,function(x,j){x.setAttribute("aria-pressed",j===cur)});
+ [].forEach.call(M.querySelectorAll(".cell"),function(c){c.classList.remove("on");if(cur!==null&&+c.getAttribute("data-g")===cur){void c.getBBox();c.classList.add("on")}})};
+ gt.appendChild(b)});
+})();
+(function(){
+var D=[["07:30–07:50","整理環境","",["班級"]],["07:50–10:00","開幕及趣味競賽","地點：操場",["典禮","趣味競賽"],1],["10:00–11:30","闖關換好禮","地點：玄關與中走廊",["闖關"],1],["11:30–12:30","午餐","",["用餐"]],["12:30–13:20","午休","",["用餐"]],["13:20–15:30","大隊接力、閉幕","地點：操場",["接力","典禮"],1],["15:50–16:00","整理環境、放學","",["班級"]]];
+document.getElementById("cls").innerHTML=D.map(function(x,i){return '<li style="--i:'+i+';--dot:'+DOT[i%4]+'"><div class="card item'+(x[4]?' imp-item':'')+'"><time>'+x[0]+'</time> '+(x[4]?'<span class="imp">★ 重要</span>':'')+'<h3>'+x[1]+'</h3>'+(x[2]?'<p>'+x[2]+'</p>':'')+'<div class="tags">'+x[3].map(function(t){return '<span class="tag '+COL[t]+'">'+t+'</span>'}).join("")+'</div></div></li>'}).join("");
+})();
+var S=new Date("2026-12-05T07:40:00+08:00"),E=new Date("2026-12-05T16:00:00+08:00");
+function p(n){return n<10?"0"+n:""+n}
 function tick(){
- var ms=target-Date.now(),e=document.getElementById("cmsg");
- if(ms<=0){["d","h","m","s"].forEach(function(i){document.getElementById(i).textContent="0"});
-  e.textContent=Date.now()<target+9*3600000?"運動會進行中，一起加油！":"運動會圓滿結束，謝謝大家！";return}
- var v=[Math.floor(ms/864e5),Math.floor(ms/36e5)%24,Math.floor(ms/6e4)%60,Math.floor(ms/1e3)%60];
- ["d","h","m","s"].forEach(function(id,i){document.getElementById(id).textContent=v[i]});
- e.textContent="距離玄良亭迎聖火還有";
+  var now=new Date(),ms=S-now,lab=document.getElementById("cdlabel");
+  if(ms<=0){lab.textContent=now<E?"運動會進行中，一起加油！":"運動會圓滿結束，謝謝大家！";ms=0}
+  else lab.textContent="距離運動會開始還有";
+  var s=Math.floor(ms/1000);
+  document.getElementById("d").textContent=Math.floor(s/86400);
+  document.getElementById("h").textContent=p(Math.floor(s%86400/3600));
+  document.getElementById("m").textContent=p(Math.floor(s%3600/60));
+  document.getElementById("s").textContent=p(s%60);
 }
 tick();setInterval(tick,1000);
-var N24=[507,506,505,504,503,502,501,607,606,605,604,603,602,601,406,405,404,403,402,401,304,303,302,301];
-(function(){
- var o='<svg viewBox="0 0 560 330" style="min-width:560px;width:100%;height:auto;display:block" role="img" aria-label="運動員集合位置圖"><g stroke="#3E3A39" stroke-width="2.5" font-family="Huninn,sans-serif" text-anchor="middle" fill="#3E3A39">';
- o+='<rect x="5" y="30" width="550" height="298" rx="149" fill="#FFFCF6"/><rect x="45" y="68" width="470" height="218" rx="109" fill="#FFFCF6"/>';
- o+='<text x="280" y="22" font-size="16" stroke="none">表演台</text>';
- N24.forEach(function(n,i){var x=40+20*i,g=Math.floor(n/100),f=g==6?"#F6D27A":g==3?"#B9DAA5":"#FFFCF6",c=n==603?"#D9534F":"#3E3A39";
-  o+='<rect x="'+x+'" y="95" width="20" height="24" fill="'+f+'"/><rect x="'+x+'" y="119" width="20" height="100" fill="'+f+'"/><rect x="'+x+'" y="292" width="20" height="24" fill="'+f+'"/>';
-  o+='<text x="'+(x+10)+'" y="111" font-size="9" stroke="none" fill="'+c+'">'+n+'</text><text x="'+(x+10)+'" y="308" font-size="9" stroke="none" fill="'+c+'">'+n+'</text>';});
- o+='<text x="270" y="140" font-size="11" stroke="none" style="writing-mode:vertical-rl">中央伍</text>';
- [215,255,295,335].forEach(function(c){o+='<polygon points="'+c+',232 '+(c+16)+',254 '+(c+7)+',254 '+(c+7)+',278 '+(c-7)+',278 '+(c-7)+',254 '+(c-16)+',254" fill="#B9DAA5"/>'});
- document.getElementById("gsvg").innerHTML=o+'</g></svg>';
-})();
 </script>
 </body>
 </html>
